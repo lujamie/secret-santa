@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Draw
+{% endblock %}
+
+{% block main %}
+    <h2 style="color: #800000;">You have drawn: {{ mydraw }}</h2>
+    <br> 
+
+    <h4 style="color: #800000;">Their Wishlist:</h4>
+    <ul class="list-unstyled">
+    {% for item in theirwishlist %}
+        <li class="media">
+            <h4 style="color:#800000;" class="mr-3" >{{ item.ranking }}</h2>
+            <div class="media-body">
+            <h5 class="mt-0 mb-1">{{ item.item }}</h5>
+            <p>{{ item.description }}</p>
+            <p><a href="{{ item.link }}">{{ item.link }}</a></p>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

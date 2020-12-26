@@ -1,0 +1,71 @@
+/*THINGS TO DO:*/
+
+/*password verification form, inspired by https://www.w3schools.com/howto/howto_js_password_validation.asp*/
+/* message box shown when user clicks on password/confirmation */
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 5px 40px;
+  font-size: 16px;
+}
+
+/* add green color and checkmark */
+.valid {
+    color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* add a red color and "x"*/
+.invalid {
+  color: #dc3545;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
+
+/*adjusting the margin of the profile pic*/
+.profile {
+  max-width: 50%;
+  margin-top: 25px;
+}
+
+#updatebar {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#welcome {
+  text-align: center;
+  font-family: "Mountains of Christmas";
+  padding: 20px;
+  font-size: 80px;
+}
+
+.col-sm-8 {
+  min-height: 100%;
+}
+
+.wishlistcol {
+  width: 150px;
+}
+
+.itemcol {
+  width: 700px;
+}

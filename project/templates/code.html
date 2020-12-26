@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Join Code
+{% endblock %}
+
+{% block main %}
+    <form action="/new_code" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Enter User Password" type="password">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="code" placeholder="Enter New Code" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Change Code</button>
+    </form>
+{% endblock %}

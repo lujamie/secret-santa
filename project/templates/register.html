@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register An Account
+{% endblock %}
+
+{% block main %}
+
+
+    <div class="container">
+    {% with errors = get_flashed_messages() %}
+        {% if errors %}
+            {% for error in errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <strong>Error:</strong> {{ error }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </div>
+
+    <br>
+
+    <h3 style="color: #800000;">Register An Account</h3>
+
+    <br>
+
+    <form action="/register" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input autofocus class="form-control" name="name" placeholder="Name" type="text" required>
+            <br>
+            <label for="username">Username</label>
+            <input class="form-control" name="username" placeholder="Username" type="text" required>
+            <br>
+            <label for="email">Email address</label>
+            <input class="form-control" name="email" placeholder="name@example.com" type="text" required>
+            <small id="emailhelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" name="password" id="password" placeholder="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+            <br>
+            <label for="confirmation">Confirm Password</label>
+            <input class="form-control" name="confirmation" id="confirmation" placeholder="Re-enter Password" type="password" required>
+        </div>
+        <button type="submit" class="btn btn-outline-danger">Sign Up</button>
+    </form>
+
+    <br>
+
+    <!--heavily inspired by https://www.w3schools.com/howto/howto_js_password_validation.asp-->
+    <div class="card bg-light mb-3" id="message">
+        <div class="card-header">Password must fulfill the following:</div>
+        <p class="invalid card-text" id="length">Minimum 8 characters</p>
+        <p class="invalid card-text" id="number">A number</p>
+        <p class="invalid card-text" id="lower">A lowercase letter</p>
+        <p class="invalid card-text" id="capital">A capital letter</p>
+    </div>
+
+    <script>
+        var password = document.getElementById("password");
+        var confirmation = document.getElementById("confirmation");
+        var length = document.getElementById("length");
+        var number = document.getElementById("number");
+        var lower = document.getElementById("lower");
+        var capital = document.getElementById("capital");
+
+        // display block when clicking on password and confirmation
+        password.onfocus = function() {
+            document.getElementById("message").style.display = "block";
+        };
+
+        password.onblur = function() {
+            document.getElementById("message").style.display = "none";
+        };
+
+        confirmation.onfocus = function() {
+            document.getElementById("message").style.display = "block";
+        };
+
+        confirmation.onblur = function() {
+            document.getElementById("message").style.display = "none";
+        };
+
+        // when user starts typing...
+        password.onkeyup = function() {
+            // validate length
+            if (password.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+
+            // validate number
+            var numbers = /[0-9]/g;
+            if (password.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // lower case letters
+            var lowercase = /[a-z]/g;
+            if (password.value.match(lowercase)) {
+                lower.classList.remove("invalid");
+                lower.classList.add("valid");
+            } else {
+                lower.classList.remove("valid");
+                lower.classList.add("invalid");
+            }
+
+            // upper case letters
+            var uppercase = /[A-Z]/g;
+            if (password.value.match(uppercase)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+        };
+
+    </script>
+
+{% endblock %}
